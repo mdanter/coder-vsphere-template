@@ -1,0 +1,21 @@
+#cloud-config
+users:
+  - name: ${username}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: sudo, docker
+    lock_passwd: false
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - curl
+  - wget
+  - git
+  - build-essential
+
+runcmd:
+  - |
+    # Install Coder agent
+    ${init_script}
